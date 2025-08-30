@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Starting - Trivia</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages.css">
+</head>
+<body>
+      <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="material-icons">hourglass_empty</i>
+            <p>Čekamo participante...</p>
+        </div>
+    </div>
+    <!-- Floating shapes background -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Timer Overlay -->
+    <div class="timer-overlay" id="timerOverlay">
+        <div class="timer-container">
+            <div class="quiz-icon">
+                <i class="fas fa-play-circle"></i>
+            </div>
+            <div class="timer-text">Kviz počinje za</div>
+            <div class="countdown-number" id="countdownNumber">5</div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="quiz-playing-content">
+        <div class="quiz-welcome-message" id="welcomeMessage">
+            <div class="quiz-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <h1>Dobrodošli!</h1>
+            <p>Kviz će uskoro početi. Spremite se!</p>
+        </div>
+    </div>
+    
+    <script type="module" src="./js/main.js"></script>
+    <script src="./js/pages/quizPlayingUser.js"></script>
+</body>
+</html>

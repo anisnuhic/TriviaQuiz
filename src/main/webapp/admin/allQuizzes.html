@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svi Kvizovi - Trivia</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+   <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="material-icons">brightness_6</i>
+        <span>Tema</span>
+    </div>
+
+    <a href="superadmin.html" class="back-button">
+        <i class="material-icons">arrow_back</i>
+        <span>Nazad</span>
+    </a>
+
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="statistike-container">
+        <div class="page-header glass-card">
+            <h1>Svi Kvizovi</h1>
+            <p>Pregled svih kvizova u sistemu</p>
+        </div>
+
+        <div class="search-filter-section glass-card">
+            <div class="search-container">
+                <div class="form-group">
+                    <div class="input-container">
+                        <i class="material-icons input-icon">search</i>
+                        <input type="text" id="searchInput" class="form-input" placeholder="Pretraži kvizove..." onkeyup="filterQuizzes()">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-container">
+                <select id="categoryFilter" class="form-select" onchange="filterQuizzes()">
+                    <option value="">Sve kategorije</option>
+                    <option value="programiranje">Programiranje</option>
+                    <option value="programiranje">Opsta-kultura</option>
+                    <option value="matematika">Matematika</option>
+                    <option value="historija">Historija</option>
+                    <option value="geografija">Geografija</option>
+                    <option value="nauka">Nauka</option>
+                    <option value="sport">Sport</option>
+                    <option value="muzika">Muzika</option>
+                    <option value="film">Film</option>
+                    <option value="hemija">Hemija</option>
+                    <option value="biologija">Biologija</option>
+                    <option value="fizika">Fizika</option>
+                </select>
+                
+                <select id="statusFilter" class="form-select" onchange="filterQuizzes()">
+                    <option value="">Svi statusi</option>
+                    <option value="active">Aktivni</option>
+                    <option value="inactive">Neaktivni</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="quizzes-section">
+            <h2 class="section-title">
+                <i class="material-icons">quiz</i>
+                <span id="quizCount">Učitavanje kvizova...</span>
+            </h2>
+            
+            <div class="quizzes-grid" id="quizzesGrid">
+            </div>
+
+            <div class="pagination-container" id="paginationContainer" style="display: none;">
+                <button class="btn-secondary" id="prevBtn" onclick="changePage(-1)">
+                    <i class="material-icons">arrow_back</i>
+                    Prethodna
+                </button>
+                
+                <div class="page-info">
+                    <span id="pageInfo">Stranica 1 od 1</span>
+                </div>
+                
+                <button class="btn-secondary" id="nextBtn" onclick="changePage(1)">
+                    Sljedeća
+                    <i class="material-icons">arrow_forward</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/pages/allQuizzes.js"></script>
+</body>
+</html>

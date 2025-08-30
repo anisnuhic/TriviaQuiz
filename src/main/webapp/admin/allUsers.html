@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="sr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svi Korisnici - Trivia</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <style>
+#edit-user-modal .modal-content {
+    max-width: 500px;
+    width: 90%;
+}
+
+.edit-form-group {
+    margin-bottom: 20px;
+}
+
+.edit-form-label {
+    display: block;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.edit-form-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.edit-form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.2);
+}
+
+.edit-checkbox-container {
+    color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 0;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.edit-checkbox-container:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.edit-checkbox {
+    display: none;
+}
+
+.edit-checkmark {
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    margin-right: 12px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.edit-checkbox:checked + .edit-checkmark {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.edit-checkbox:checked + .edit-checkmark:after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-cancel {
+    padding: 12px 24px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+}
+
+.btn-save {
+    padding: 12px 24px;
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-save:hover {
+    background: #5a4fcf;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(106, 90, 205, 0.3);
+}
+
+.btn-save:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.user-initials-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin: 0 auto;
+    box-shadow: 0 8px 25px rgba(106, 90, 205, 0.3);
+}
+
+@media (max-width: 768px) {
+    #edit-user-modal .modal-content {
+        width: 95%;
+        margin: 20px auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .btn-cancel,
+    .btn-save {
+        width: 100%;
+        justify-content: center;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="material-icons">brightness_6</i>
+        <span>Tema</span>
+    </div>
+
+    <a href="superadmin.html" class="back-button">
+        <i class="material-icons">arrow_back</i>
+        <span>Nazad</span>
+    </a>
+
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="statistike-container">
+        <div class="page-header glass-card">
+            <h1>Svi Korisnici</h1>
+            <p>Pregled svih korisnika u sistemu</p>
+        </div>
+
+        <div class="search-filter-section glass-card">
+            <div class="search-container">
+                <div class="form-group">
+                    <div class="input-container">
+                        <i class="material-icons input-icon">search</i>
+                        <input type="text" id="searchInput" class="form-input" placeholder="Pretraži korisnike..."
+                            onkeyup="filterUsers()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-container">
+                <select id="verificationFilter" class="form-select" onchange="filterUsers()">
+                    <option value="">Svi korisnici</option>
+                    <option value="verified">Verifikovani</option>
+                    <option value="unverified">Neverifikovani</option>
+                </select>
+
+                <select id="sortFilter" class="form-select" onchange="filterUsers()">
+                    <option value="newest">Najnoviji</option>
+                    <option value="oldest">Najstariji</option>
+                    <option value="alphabetical">Abecedno</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="quizzes-section">
+            <h2 class="section-title">
+                <i class="material-icons">people</i>
+                <span id="userCount">Učitavanje korisnika...</span>
+            </h2>
+
+            <div class="quizzes-grid" id="usersGrid">
+            </div>
+
+            <div class="pagination-container" id="paginationContainer" style="display: none;">
+                <button class="btn-secondary" id="prevBtn" onclick="changePage(-1)">
+                    <i class="material-icons">arrow_back</i>
+                    Prethodna
+                </button>
+
+                <div class="page-info">
+                    <span id="pageInfo">Stranica 1 od 1</span>
+                </div>
+
+                <button class="btn-secondary" id="nextBtn" onclick="changePage(1)">
+                    Sljedeća
+                    <i class="material-icons">arrow_forward</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/pages/allUsers.js"></script>
+</body>
+
+</html>

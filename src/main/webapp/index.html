@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Quiz - Dobrodošli</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="material-icons">brightness_6</i>
+        <span>Tema</span>
+    </div>
+
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo">
+                <i class="material-icons">quiz</i>
+            </div>
+        </div>
+
+        <div class="welcome-text">
+            <h1>Dobrodošli na Trivia Quiz!</h1>
+            <p>Testirajte svoje znanje u najzabavnijem kvizu</p>
+        </div>
+
+        <div class="glass-card main-card">
+            <div class="message error" id="errorMessage" style="display: none;">
+                <i class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 1rem;">error</i>
+                <span id="errorText"></span>
+            </div>
+
+            <div class="message success" id="successMessage" style="display: none;">
+                <i class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 1rem;">check_circle</i>
+                <span id="successText"></span>
+            </div>
+
+            <div class="pin-section">
+                <h2>Pridružite se kvizu</h2>
+                <div class="pin-input-container">
+                    <input type="text" class="form-input pin-input" placeholder="Unesite PIN kviza" maxlength="6" id="pinInput">
+                </div>
+                <button class="btn-primary join-btn" id="joinBtn" onclick="joinQuiz()">
+                    <i class="material-icons" style="vertical-align: middle; margin-right: 8px;">play_arrow</i>
+                    Pridruži se
+                </button>
+            </div>
+
+            <div class="divider">
+                <span>ili</span>
+            </div>
+
+            <div class="auth-buttons">
+                <a href="loginPage.html" class="auth-btn login">
+                    <i class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 1rem;">login</i>
+                    Prijavi se
+                </a>
+                <a href="signup.html" class="auth-btn signup">
+                    <i class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 1rem;">person_add</i>
+                    Registruj se
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/pages/index.js"></script>
+</body>
+</html>

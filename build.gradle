@@ -1,0 +1,55 @@
+plugins {
+    id 'war'
+    id 'java'
+    id 'org.gretty' version '4.0.3'
+}
+
+group = 'com.example'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+    implementation 'org.hibernate:hibernate-core:6.2.7.Final'
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    implementation 'org.hibernate:hibernate-hikaricp:6.2.7.Final'
+    
+    providedCompile 'jakarta.websocket:jakarta.websocket-api:2.0.0'
+    implementation 'jakarta.websocket:jakarta.websocket-api:2.0.0'
+    
+    providedCompile 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+    implementation 'org.mindrot:jbcrypt:0.4'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'commons-fileupload:commons-fileupload:1.5'
+    implementation 'commons-io:commons-io:2.11.0'
+}
+
+war {
+    archiveFileName = 'trivia.war'
+}
+
+task generateData(type: JavaExec) {
+    group = 'application'
+    description = 'Generiše test podatke u bazu'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'util.DataGenerator'
+    
+    doFirst {
+        println "Pokretanje generiranja test podataka..."
+    }
+    
+    doLast {
+        println "Završeno generiranje test podataka!"
+    }
+}
+
+gretty {
+    contextPath = '/trivia'
+    webAppDirName = 'src/main/webapp'
+    servletContainer = 'tomcat10'
+}

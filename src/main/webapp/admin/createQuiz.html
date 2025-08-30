@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kreiranje Kviza</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="material-icons">brightness_6</i>
+        <span>Tema</span>
+    </div>
+
+    <a href="dashboard.html" class="back-button">
+        <i class="material-icons">arrow_back</i>
+        <span>Nazad</span>
+    </a>
+
+    <div class="create-quiz-container">
+        <div class="page-header">
+            <h1>Kreiranje Kviza</h1>
+            <p>Kreirajte svoj vlastiti kviz dodavanjem pitanja i postavki</p>
+        </div>
+
+        <form class="quiz-form" id="quizForm">
+            <div class="form-section">
+                <div class="section-header">
+                    <i class="material-icons">info</i>
+                    <span>Osnovne informacije</span>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="quizTitle">Naziv Kviza *</label>
+                        <div class="input-container">
+                            <i class="material-icons input-icon">title</i>
+                            <input type="text" 
+                                   id="quizTitle" 
+                                   class="form-input" 
+                                   placeholder="Unesite naziv kviza..."
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quizCategory">Kategorija *</label>
+                        <select id="quizCategory" class="form-select" required>
+                            <option value="">Izaberite kategoriju...</option>
+                            <option value="matematika">Matematika</option>
+                            <option value="hemija">Hemija</option>
+                            <option value="biologija">Biologija</option>
+                            <option value="programiranje">Programiranje</option>
+                            <option value="historija">Historija</option>
+                            <option value="geografija">Geografija</option>
+                            <option value="opsta-kultura">Opšta kultura</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="quizDescription">Opis Kviza</label>
+                    <div class="input-container">
+                        <i class="material-icons input-icon">description</i>
+                        <input type="text" 
+                               id="quizDescription" 
+                               class="form-input" 
+                               placeholder="Kratko opišite vaš kviz...">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Naslovna Slika</label>
+                    <div class="image-upload">
+                        <input type="file" 
+                               id="quizImage" 
+                               accept="image/*" 
+                               onchange="handleImageUpload(this)">
+                        <div class="upload-content" id="uploadContent">
+                            <i class="material-icons">cloud_upload</i>
+                            <p>Kliknite da odaberete sliku</p>
+                            <small>PNG, JPG do 5MB</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+    <div class="section-header">
+        <i class="material-icons">quiz</i>
+        <span>Pitanja</span>
+        <div style="margin-left: auto; display: flex; gap: 10px;">
+            <button type="button" class="btn-icon" onclick="collapseAllQuestions()" title="Kolapsovati sva pitanja">
+                <i class="material-icons">unfold_less</i>
+            </button>
+            <button type="button" class="btn-icon" onclick="expandAllQuestions()" title="Proširiti sva pitanja">
+                <i class="material-icons">unfold_more</i>
+            </button>
+        </div>
+    </div>
+
+    <div class="questions-container" id="questionsContainer">
+        <div class="empty-questions" id="emptyQuestions">
+            <i class="material-icons">help_outline</i>
+            <h3>Nema dodanih pitanja</h3>
+            <p>Kliknite na dugme ispod da dodate prvo pitanje</p>
+        </div>
+    </div>
+
+    <button type="button" class="add-question-btn" onclick="addQuestion()">
+        <i class="material-icons">add</i>
+        <span>Dodaj Pitanje</span>
+    </button>
+</div>
+
+            <div class="quiz-actions-save">
+                <a href="dashboard.html" class="btn-secondary">Otkaži</a>
+                <button type="submit" class="btn-primary">Objavi Kviz</button>
+                <button  type="button" class="btn-primary" id="deleteBtn" onclick="deleteQuiz()">Izbriši kviz</button>
+            </div>
+        </form>
+    </div>
+
+    <script type="module" src="../js/main.js"></script>
+    <script src="../js/pages/createQuiz.js"></script>
+</body>
+</html>

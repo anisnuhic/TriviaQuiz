@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Quiz - Registracija</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+    <a href="index.html" class="back-button">
+        <i class="material-icons">arrow_back</i>
+        <span>Nazad</span>
+    </a>
+
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="material-icons">brightness_6</i>
+        <span>Tema</span>
+    </div>
+
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="welcome-text">
+            <h1>Kreiraj nalog!</h1>
+            <p>Pridruži se Trivia Quiz zajednici</p>
+        </div>
+
+        <div class="glass-card signup-card">
+            <div class="message error" id="errorMessage">
+                <i class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 1rem;">error</i>
+                <span id="errorText"></span>
+            </div>
+
+            <div class="message success" id="successMessage">
+                <i class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 1rem;">check_circle</i>
+                <span id="successText"></span>
+            </div>
+
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="fullName">Ime i prezime</label>
+                    <div class="input-container">
+                        <i class="material-icons input-icon" id="fullNameIcon">person</i>
+                        <input type="text" id="fullName" name="fullName" class="form-input" 
+                               placeholder="Unesite ime i prezime" required>
+                    </div>
+                    <div class="field-error" id="fullNameError"></div>
+                    <div class="field-success" id="fullNameSuccess"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Korisničko ime</label>
+                    <div class="input-container">
+                        <i class="material-icons input-icon" id="usernameIcon">account_circle</i>
+                        <input type="text" id="username" name="username" class="form-input" 
+                               placeholder="Izaberite korisničko ime" required>
+                    </div>
+                    <div class="field-error" id="usernameError"></div>
+                    <div class="field-success" id="usernameSuccess"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email adresa</label>
+                    <div class="input-container">
+                        <i class="material-icons input-icon" id="emailIcon">email</i>
+                        <input type="email" id="email" name="email" class="form-input" 
+                               placeholder="Unesite email adresu" required>
+                    </div>
+                    <div class="field-error" id="emailError"></div>
+                    <div class="field-success" id="emailSuccess"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Lozinka</label>
+                    <div class="input-container">
+                        <i class="material-icons input-icon" id="passwordIcon">lock</i>
+                        <input type="password" id="password" name="password" class="form-input" 
+                               placeholder="Kreirajte lozinku" required>
+                        <i class="material-icons password-toggle" onclick="togglePasswordField('password')">visibility_off</i>
+                    </div>
+                    <div class="password-strength" id="passwordStrength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <span id="strengthText">Unesite lozinku</span>
+                    </div>
+                    <div class="field-error" id="passwordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Potvrdite lozinku</label>
+                    <div class="input-container">
+                        <i class="material-icons input-icon" id="confirmPasswordIcon">lock_outline</i>
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" 
+                               placeholder="Potvrdite lozinku" required>
+                        <i class="material-icons password-toggle" onclick="togglePasswordField('confirmPassword')">visibility_off</i>
+                    </div>
+                    <div class="field-error" id="confirmPasswordError"></div>
+                    <div class="field-success" id="confirmPasswordSuccess"></div>
+                </div>
+
+                <button type="submit" class="btn-primary signup-btn" id="signupBtn">
+                    <i class="material-icons" style="vertical-align: middle; margin-right: 8px;">person_add</i>
+                    Kreiraj nalog
+                </button>
+            </form>
+
+            <div class="divider">
+                <span>ili</span>
+            </div>
+
+            <div class="login-link">
+                <a href="loginPage.html" class="login-btn">
+                    <i class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 1rem;">login</i>
+                    Već imate nalog?
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/pages/signup.js"></script>
+</body>
+</html>

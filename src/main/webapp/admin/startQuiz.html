@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Početak Kviza - Trivia</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <style>
+        .pin-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--card-background);
+            border-radius: 12px;
+            border: 2px dashed var(--accent-color);
+            text-align: center;
+            color: white;
+        }
+        
+        .pin-section h4 {
+            margin: 0 0 10px 0;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .quiz-pin {
+            font-size: 32px;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+            color: var(--accent-color);
+            letter-spacing: 4px;
+            margin: 10px 0;
+        }
+        
+        .pin-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+        
+        .copy-pin-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-pin-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+        
+        .copy-pin-btn.copied {
+            background: var(--success-color);
+            transform: scale(1.05);
+        }
+        
+        .copy-pin-btn i {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="material-icons">brightness_6</i>
+        <span>Tema</span>
+    </button>
+
+    <a href="dashboard.html" class="back-button">
+        <i class="material-icons">arrow_back</i>
+        <span>Nazad</span>
+    </a>
+
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="start-quiz-container">
+        <div class="quiz-info-section">
+            <div class="quiz-preview-card">
+                <div class="quiz-preview-image" id="quizImage">
+                    <i class="material-icons">quiz</i>
+                </div>
+                
+                <div class="quiz-preview-content">
+                    <div class="quiz-category" id="quizCategory">
+                        Učitava se...
+                    </div>
+                    <h1 class="quiz-title" id="quizTitle">
+                        Učitava se naziv kviza...
+                    </h1>
+                    <p class="quiz-description" id="quizDescription">
+                        Učitava se opis kviza...
+                    </p>
+                    
+                    <div class="quiz-stats">
+                        <div class="stat-item">
+                            <i class="material-icons">help_outline</i>
+                            <span id="questionCount">0 pitanja</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="material-icons">timer</i>
+                            <span id="estimatedTime">0 min</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="material-icons">star</i>
+                            <span id="totalPoints">0 bodova</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-start-quiz" id="startQuizBtn" onclick="startQuiz()">
+                        <i class="material-icons">play_arrow</i>
+                        Pokreni Kviz
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="participants-section">
+            <div class="participants-card">
+                <div class="participants-header">
+                    <h3>
+                        <i class="material-icons">group</i>
+                        Učesnici
+                    </h3>
+                    <span class="participant-count" id="participantCount">0</span>
+                </div>
+                
+                <div class="pin-section" id="pinSection" style="display: none;">
+                    <h4>PIN za pridruživanje</h4>
+                    <div class="quiz-pin" id="quizPin">------</div>
+                    <p class="pin-description">Učesnici mogu koristiti ovaj PIN da se pridruže kvizu</p>
+                    <button class="copy-pin-btn" id="copyPinBtn" onclick="copyQuizPin()">
+                        <i class="material-icons">content_copy</i>
+                        Kopiraj PIN
+                    </button>
+                </div>
+                
+                <div class="participants-list" id="participantsList">
+                    <div class="empty-participants">
+                        <i class="material-icons">people_outline</i>
+                        <p>Nema prijavljenih učesnika</p>
+                        <small>Učesnici će se pojaviti ovdje kada se prijave</small>
+                    </div>
+                </div>
+                
+                <div class="join-form" id="joinForm" style="display: none;">
+                    <div class="form-group">
+                        <label>Vaše ime</label>
+                        <div class="input-container">
+                            <i class="material-icons input-icon">person</i>
+                            <input type="text" 
+                                   class="form-input" 
+                                   id="participantName"
+                                   placeholder="Unesite vaše ime..."
+                                   maxlength="50">
+                        </div>
+                    </div>
+                    <button class="btn-join" onclick="joinQuiz()">
+                        <i class="material-icons">person_add</i>
+                        Pridruži se
+                    </button>
+                </div>
+                
+                <div class="host-controls" id="hostControls" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="material-icons">hourglass_empty</i>
+            <p>Učitava se kviz...</p>
+        </div>
+    </div>
+
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/pages/startQuiz.js"></script>
+</body>
+</html>

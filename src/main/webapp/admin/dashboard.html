@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Trivia</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+   <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="material-icons">brightness_6</i>
+        <span>Tema</span>
+    </div>
+
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="material-icons">person</i>
+                </div>
+                <div class="user-info">
+                    <h3></h3>
+                    <p></p>
+                </div>
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="material-icons">home</i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="material-icons">quiz</i>
+                            <span>Moji Kvizovi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="material-icons">public</i>
+                            <span>Svi Kvizovi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="material-icons">category</i>
+                            <span>Kategorije</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/trivia/admin/statistike.html" class="nav-link">
+                            <i class="material-icons">trending_up</i>
+                            <span>Statistike</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="material-icons">account_circle</i>
+                            <span>Moj Profil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="material-icons">settings</i>
+                            <span>Podešavanja</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="logOut()">
+                            <i class="material-icons">logout</i>
+                            <span>Izloguj se</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h1>Dobrodošli nazad, </h1>
+                <p>Spremni ste za novi kviz? Evo vašeg pregleda aktivnosti.</p>
+            </div>
+
+            
+
+            <div class="quizzes-section">
+                <h2 class="section-title">
+                    <i class="material-icons">quiz</i>
+                    Moji Kvizovi
+                </h2>
+                
+                <div class="quizzes-grid">
+                    <a href="#" class="add-quiz-card" onclick="createQuiz()">
+                        <i class="material-icons">add</i>
+                        <h3>Kreiraj novi kviz</h3>
+                        <p>Dodaj novi kviz i podijeli ga sa prijateljima</p>
+                    </a>
+                </div>
+            </div>
+
+
+            
+
+
+        </main>
+    </div>
+
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/pages/dashboard.js"></script>
+</body>
+</html>

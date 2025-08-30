@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pridruži se Kvizu - Trivia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        .waiting-message {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .waiting-message .waiting-icon {
+            font-size: 48px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        
+        .waiting-message h3 {
+            color: var(--text-primary);
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+        
+        .waiting-message p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .user-status {
+            background: var(--success-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .leave-quiz-btn {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .leave-quiz-btn:hover {
+            background: var(--danger-hover);
+            transform: translateY(-2px);
+        }
+        
+        .leave-quiz-btn i {
+            font-size: 18px;
+        }
+        
+        .quiz-info-section .quiz-preview-card .quiz-preview-content .btn-start-quiz {
+            display: none !important;
+        }
+        
+        .participants-section {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="material-icons">brightness_6</i>
+        <span>Tema</span>
+    </button>
+
+    <a href="index.html" class="back-button">
+        <i class="material-icons">arrow_back</i>
+        <span>Nazad</span>
+    </a>
+
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="start-quiz-container">
+        <!-- Quiz Info Section -->
+        <div class="quiz-info-section">
+            <div class="quiz-preview-card">
+                <!-- Quiz Image -->
+                <div class="quiz-preview-image" id="quizImage">
+                    <i class="material-icons">quiz</i>
+                </div>
+                
+                <!-- Quiz Details -->
+                <div class="quiz-preview-content">
+                    <div class="quiz-category" id="quizCategory">
+                        Učitava se...
+                    </div>
+                    <h1 class="quiz-title" id="quizTitle">
+                        Učitava se naziv kviza...
+                    </h1>
+                    <p class="quiz-description" id="quizDescription">
+                        Učitava se opis kviza...
+                    </p>
+                    
+                    <!-- Quiz Stats -->
+                    <div class="quiz-stats">
+                        <div class="stat-item">
+                            <i class="material-icons">help_outline</i>
+                            <span id="questionCount">0 pitanja</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="material-icons">timer</i>
+                            <span id="estimatedTime">0 min</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="material-icons">star</i>
+                            <span id="totalPoints">0 bodova</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Participants Section -->
+        <div class="participants-section">
+            <!-- User Status (when joined) -->
+            <div class="user-status" id="userStatus" style="display: none;">
+                <i class="material-icons">check_circle</i>
+                <span>Uspiješno ste se pridružili kvizu!</span>
+            </div>
+            
+            <!-- Waiting Message -->
+            <div class="waiting-message" id="waitingMessage" style="display: none;">
+                <div class="waiting-icon">
+                    <i class="material-icons">hourglass_empty</i>
+                </div>
+                <h3>Čekamo da host pokrene kviz...</h3>
+                <p>Kviz će uskoro početi. Molimo sačekajte.</p>
+            </div>
+            
+            <div class="participants-card">
+                <div class="participants-header">
+                    <h3>
+                        <i class="material-icons">group</i>
+                        Učesnici
+                    </h3>
+                    <span class="participant-count" id="participantCount">0</span>
+                </div>
+                
+                <div class="participants-list" id="participantsList">
+                    <div class="empty-participants">
+                        <i class="material-icons">people_outline</i>
+                        <p>Nema prijavljenih učesnika</p>
+                        <small>Učesnici će se pojaviti ovdje kada se prijave</small>
+                    </div>
+                </div>
+                
+                <!-- Join Form (initially visible) -->
+                <div class="join-form" id="joinForm">
+                    <div class="form-group">
+                        <label>Vaše ime</label>
+                        <div class="input-container">
+                            <i class="material-icons input-icon">person</i>
+                            <input type="text" 
+                                   class="form-input" 
+                                   id="participantName"
+                                   placeholder="Unesite vaše ime..."
+                                   maxlength="50">
+                        </div>
+                    </div>
+                    <button class="btn-join" onclick="joinQuiz()" id="joinButton">
+                        <i class="material-icons">person_add</i>
+                        Pridruži se
+                    </button>
+                </div>
+                
+                <!-- Leave Quiz Button (shown after joining) -->
+                <div class="leave-controls" id="leaveControls" style="display: none;">
+                    <button class="leave-quiz-btn" onclick="leaveQuiz()">
+                        <i class="material-icons">exit_to_app</i>
+                        Napusti kviz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+     <script type="module" src="js/main.js"></script>
+    <script src="js/pages/startQuizUser.js"></script>
+</body>
+</html>
